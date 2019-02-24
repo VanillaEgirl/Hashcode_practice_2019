@@ -1,5 +1,6 @@
 import FileHandling.FileReader;
 import Other.Pizza;
+import Other.Slice;
 
 import java.util.Random;
 

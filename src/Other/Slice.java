@@ -4,6 +4,14 @@ public class Slice {
     public int y1;
     public int x1;
     public int y2;
+
+    public Slice(int y1, int x1, int y2, int x2) {
+        this.y1 = y1;
+        this.x1 = x1;
+        this.y2 = y2;
+        this.x2 = x2;
+    }
+
     public int x2;
 
     public boolean isValid() {
@@ -28,11 +36,11 @@ public class Slice {
 
         for (int i = 0; i < getHeight(); i++) {
             for (int j = 0; j < getLength(); j++) {
-                if(Pizza.map[y1+i][x1+j] == Ingredient.TOMATO) {
+                if (Pizza.map[y1 + i][x1 + j] == Ingredient.TOMATO) {
                     hasTomato = true;
                 }
 
-                if(Pizza.map[y1+i][x1+j] == Ingredient.MUSHROOM) {
+                if (Pizza.map[y1 + i][x1 + j] == Ingredient.MUSHROOM) {
                     hasMushroom = true;
                 }
             }
