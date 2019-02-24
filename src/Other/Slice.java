@@ -4,6 +4,7 @@ public class Slice {
     public int y1;
     public int x1;
     public int y2;
+    public int x2;
 
     public Slice() {
 
@@ -15,8 +16,6 @@ public class Slice {
         this.y2 = y2;
         this.x2 = x2;
     }
-
-    public int x2;
 
     public boolean isValid() {
         return calcSize() <= Pizza.MAX_SIZE && hasAllIngredients();
