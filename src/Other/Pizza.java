@@ -20,4 +20,14 @@ public class Pizza {
             System.out.println();
         }
     }
+
+    public boolean isValid() {
+        for (Slice slice : slices) {
+            if (!slice.isValid()) {
+                return false;
+            }
+        }
+
+        return true;
+    }
 }
