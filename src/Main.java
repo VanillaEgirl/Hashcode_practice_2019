@@ -1,6 +1,7 @@
 import FileHandling.FileReader;
 import FileHandling.FileWriter;
 import Other.Pizza;
+import Other.Shape;
 import Other.Slice;
 
 import java.util.ArrayList;
@@ -43,11 +44,15 @@ public class Main {
     public List<Slice> getPossibleSlices() {
         List<Slice> possibleSlices = new ArrayList<>();
 
-        for (int i = 0; i < Pizza.Y; i++) {
-            for (int j = 0; j < Pizza.X; j++) {
-
-            }
-        }
+//        List<Shape> shapes = FileReader.getShapes();
+//
+//        for (Shape shape : shapes) {
+//            for (int i = 0; i < Pizza.Y/shape.y; i++) {
+//                for (int j = 0; j < Pizza.X; j++) {
+//
+//                }
+//            }
+//        }
 
         return possibleSlices;
     }
