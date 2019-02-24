@@ -1,3 +1,5 @@
+package Other;
+
 public class Slice {
     int y1;
     int x1;
