@@ -1,8 +1,8 @@
 package Other;
 
 public class Slice {
-    int y1;
-    int x1;
-    int y2;
-    int x2;
+    public int y1;
+    public int x1;
+    public int y2;
+    public int x2;
 }
