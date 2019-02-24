@@ -8,15 +8,14 @@ import java.util.List;
 public class FileHandler {
     public static List<String> readFile() {
 
-        List<String> lines = new ArrayList<String>();
+        List<String> lines = new ArrayList<>();
         try {
             BufferedReader reader = new BufferedReader(new FileReader(FilePath.path));
 
-            String line = " ";
-            while (!line.isEmpty()) {
-                line = reader.readLine();
+            String line = reader.readLine();
+            while (line != null && !line.isEmpty()) {
                 lines.add(line);
-                System.out.println(line);
+                line = reader.readLine();
             }
 
             reader.close();
