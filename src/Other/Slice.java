@@ -34,21 +34,21 @@ public class Slice {
     }
 
     private boolean hasAllIngredients() {
-        boolean hasTomato = false;
-        boolean hasMushroom = false;
+        int tomatoCount = 0;
+        int mushroomCount = 0;
 
         for (int i = 0; i < getHeight(); i++) {
             for (int j = 0; j < getLength(); j++) {
                 if (Pizza.map[y1 + i][x1 + j] == Ingredient.TOMATO) {
-                    hasTomato = true;
+                    tomatoCount++;
                 }
 
                 if (Pizza.map[y1 + i][x1 + j] == Ingredient.MUSHROOM) {
-                    hasMushroom = true;
+                    mushroomCount++;
                 }
             }
         }
 
-        return hasTomato && hasMushroom;
+        return tomatoCount >= Pizza.MIN_INGREDIENTS && mushroomCount >= Pizza.MIN_INGREDIENTS;
     }
 }
