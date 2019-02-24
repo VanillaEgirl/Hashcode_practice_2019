@@ -1,5 +1,6 @@
 package FileHandling;
 
+import Other.Ingredient;
 import Other.Pizza;
 
 import java.io.BufferedReader;
@@ -37,12 +38,21 @@ public class FileReader {
     }
 
     private static void parseRows(List<String> rows) {
-        Pizza.map = new char[Pizza.Y][Pizza.X];
+        Pizza.map = new Ingredient[Pizza.Y][Pizza.X];
 
-        int i=0;
-        for(String row : rows) {
+        int i = 0;
+        for (String row : rows) {
             char[] chars = row.toCharArray();
-            System.arraycopy(chars, 0, Pizza.map[i], 0, chars.length);
+            for (int j = 0; j < chars.length; j++) {
+                Ingredient ingredient;
+                if (chars[j] == Ingredient.TOMATO.signifier) {
+                    ingredient = Ingredient.TOMATO;
+                } else {
+                    ingredient = Ingredient.MUSHROOM;
+                }
+
+                Pizza.map[i][j] = ingredient;
+            }
             i++;
         }
     }

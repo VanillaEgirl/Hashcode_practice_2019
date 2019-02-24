@@ -4,7 +4,7 @@ public enum Ingredient {
     TOMATO('T'),
     MUSHROOM('M');
 
-    char signifier;
+    public char signifier;
 
     Ingredient(char signifier) {
         this.signifier = signifier;

@@ -9,7 +9,7 @@ public class Main {
 
         Random random = new Random();
 
-        int randX = random.nextInt()
+        int randX = random.nextInt();
 
         Pizza.print();
     }

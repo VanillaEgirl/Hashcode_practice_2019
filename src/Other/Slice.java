@@ -28,11 +28,11 @@ public class Slice {
 
         for (int i = 0; i < getHeight(); i++) {
             for (int j = 0; j < getLength(); j++) {
-                if(Pizza.map[y1+i][x1+j] == Ingredient.TOMATO.signifier) {
+                if(Pizza.map[y1+i][x1+j] == Ingredient.TOMATO) {
                     hasTomato = true;
                 }
 
-                if(Pizza.map[y1+i][x1+j] == Ingredient.MUSHROOM.signifier) {
+                if(Pizza.map[y1+i][x1+j] == Ingredient.MUSHROOM) {
                     hasMushroom = true;
                 }
             }
