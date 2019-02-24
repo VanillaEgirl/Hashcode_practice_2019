@@ -22,12 +22,35 @@ public class Pizza {
     }
 
     public boolean isValid() {
+        boolean[][] takenCells = new boolean[Y][X];
+
+        for (int i = 0; i < Y; i++) {
+            for (int j = 0; j < X; j++) {
+                takenCells[i][j] = false;
+            }
+        }
+
+
         for (Slice slice : slices) {
             if (!slice.isValid()) {
+                return false;
+            }
+
+            boolean successfull = writeTakenCells(takenCells, slice);
+
+            if(!successfull) {
                 return false;
             }
         }
 
         return true;
+    }
+
+    private boolean writeTakenCells(boolean[][] takenCells, Slice slice) {
+        for (int i = 0; i < slice.getHeight(); i++) {
+            for (int j = 0; j < slice.getLength(); j++) {
+                takenCells[slice.y1 + i][slice.x1 + j] = true;
+            }
+        }
     }
 }
