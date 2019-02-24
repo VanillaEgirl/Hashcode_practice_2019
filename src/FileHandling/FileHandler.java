@@ -13,6 +13,12 @@ public class FileHandler {
             BufferedReader reader = new BufferedReader(new FileReader(FilePath.path));
 
             String line = reader.readLine();
+            String fractals[] = line.split(" ");
+            Pizza.ROWS = Integer.parseInt(fractals[0]);
+            int columns = Integer.parseInt(fractals[1]);
+            int min_ingredients = Integer.parseInt(fractals[2]);
+            int max_size = Integer.parseInt(fractals[3]);
+
             while (line != null && !line.isEmpty()) {
                 lines.add(line);
                 line = reader.readLine();
