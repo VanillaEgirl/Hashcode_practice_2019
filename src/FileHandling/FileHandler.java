@@ -23,7 +23,6 @@ public class FileHandler {
 
             return lines;
         } catch (Exception e) {
-            System.err.format("Exception occurred trying to read file.");
             e.printStackTrace();
             return null;
         }
