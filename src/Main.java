@@ -12,6 +12,9 @@ import java.util.Random;
 public class Main {
     private static Random random = new Random();
 
+    private static int CHUNK_X = 20;
+    private static int CHUNK_Y = 20;
+
     public static void main(String[] args) {
         FileReader.readFile();
         FileReader.readShapes();
@@ -19,6 +22,15 @@ public class Main {
         List<Slice> possibleSlices = getAllPossibleSlices();
 
         Pizza bestPizza = new Pizza();
+
+        List<Chunk> chunks = new ArrayList<>();
+
+        for (int iY_chunk = 0; iY_chunk < Pizza.Y / CHUNK_Y; iY_chunk++) {
+            for (int iX_chunk = 0; iX_chunk < Pizza.X / CHUNK_X; iX_chunk++) {
+                Chunk chunk = new Chunk(iY_chunk * CHUNK_Y, iX_chunk * CHUNK_X, (iY_chunk + 1) * CHUNK_Y, (iX_chunk + 1) * CHUNK_X);
+                chunks.add(chunk);
+            }
+        }
 
         for (int t = 0; t < 10; t++) {
             Pizza pizza = new Pizza();
