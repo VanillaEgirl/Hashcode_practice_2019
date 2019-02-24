@@ -1,5 +1,6 @@
 import FileHandling.FileReader;
 import FileHandling.FileWriter;
+import Other.Chunk;
 import Other.Pizza;
 import Other.Shape;
 import Other.Slice;
@@ -14,26 +15,39 @@ public class Main {
     public static void main(String[] args) {
         FileReader.readFile();
 
-        Pizza pizza = new Pizza();
+        List<Slice> possibleSlices = getAllPossibleSlices();
 
-        List<Slice> possibleSlices = getPossibleSlices();
+        Pizza bestPizza = new Pizza();
 
-        int i = 0;
-        for (Slice slice : possibleSlices) {
-            if (pizza.canAddSlice(slice)) {
-                pizza.addSlice(slice);
+        for (int t = 0; t < 10; t++) {
+            Pizza pizza = new Pizza();
+
+            for (int i = 0; i < 100; i++) {
+                int randomIndex = random.nextInt(possibleSlices.size());
+                Slice slice = possibleSlices.get(randomIndex);
+
+                if (pizza.canAddSlice(slice)) {
+                    pizza.addSlice(slice);
+                }
             }
 
-            i++;
-            if (i % 10000 == 0) {
-                System.out.println(i);
+            for (Slice slice : possibleSlices) {
+                if (pizza.canAddSlice(slice)) {
+                    pizza.addSlice(slice);
+                }
+            }
+
+            System.out.println(pizza.calcScore());
+            if (pizza.calcScore() > bestPizza.calcScore()) {
+                bestPizza.slices.clear();
+                bestPizza.slices.addAll(pizza.slices);
             }
         }
 
-        FileWriter.writeFile(pizza.slices);
+        FileWriter.writeFile(bestPizza.slices);
     }
 
-    public static List<Slice> getPossibleSlices() {
+    public static List<Slice> getAllPossibleSlices() {
         List<Slice> possibleSlices = new ArrayList<>();
 
         List<Shape> shapes = FileReader.readShapes();
@@ -50,6 +64,25 @@ public class Main {
         }
 
         System.out.println(possibleSlices.size() + " Slices generated");
+
+        return possibleSlices;
+    }
+
+    public static List<Slice> getPossibleSlicesChunk(Chunk chunk) {
+        List<Slice> possibleSlices = new ArrayList<>();
+
+        List<Shape> shapes = FileReader.readShapes();
+
+        for (Shape shape : shapes) {
+            for (int i = 0; i <= chunk.getHeight() - shape.y; i++) {
+                for (int j = 0; j <= chunk.getWidth() - shape.x; j++) {
+                    Slice slice = new Slice(i, j, i + shape.y, j + shape.x);
+                    if (slice.isValid()) {
+                        possibleSlices.add(slice);
+                    }
+                }
+            }
+        }
 
         return possibleSlices;
     }
