@@ -9,4 +9,8 @@ public enum Ingredient {
     Ingredient(char signifier) {
         this.signifier = signifier;
     }
+
+    public boolean equals(Ingredient ingredient) {
+        return this.signifier == ingredient.signifier;
+    }
 }
