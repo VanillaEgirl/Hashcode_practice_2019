@@ -14,6 +14,7 @@ public class Main {
 
     public static void main(String[] args) {
         FileReader.readFile();
+        FileReader.readShapes();
 
         List<Slice> possibleSlices = getAllPossibleSlices();
 
@@ -50,7 +51,7 @@ public class Main {
     public static List<Slice> getAllPossibleSlices() {
         List<Slice> possibleSlices = new ArrayList<>();
 
-        List<Shape> shapes = FileReader.readShapes();
+        List<Shape> shapes = FileReader.shapes;
 
         for (Shape shape : shapes) {
             for (int i = 0; i <= Pizza.Y - shape.y; i++) {
@@ -64,25 +65,6 @@ public class Main {
         }
 
         System.out.println(possibleSlices.size() + " Slices generated");
-
-        return possibleSlices;
-    }
-
-    public static List<Slice> getPossibleSlicesChunk(Chunk chunk) {
-        List<Slice> possibleSlices = new ArrayList<>();
-
-        List<Shape> shapes = FileReader.readShapes();
-
-        for (Shape shape : shapes) {
-            for (int i = 0; i <= chunk.getHeight() - shape.y; i++) {
-                for (int j = 0; j <= chunk.getWidth() - shape.x; j++) {
-                    Slice slice = new Slice(i, j, i + shape.y, j + shape.x);
-                    if (slice.isValid()) {
-                        possibleSlices.add(slice);
-                    }
-                }
-            }
-        }
 
         return possibleSlices;
     }

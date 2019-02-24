@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FileReader {
+    public static List<Shape> shapes = new ArrayList<>();
+
     public static List<String> readFile() {
 
         List<String> lines = new ArrayList<>();
@@ -38,9 +40,7 @@ public class FileReader {
         }
     }
 
-    public static List<Shape> readShapes() {
-
-        List<Shape> shapes = new ArrayList<>();
+    public static void readShapes() {
         try {
             BufferedReader reader = new BufferedReader(new java.io.FileReader(FilePath.possibilitiesPath));
 
@@ -59,11 +59,8 @@ public class FileReader {
             }
 
             reader.close();
-
-            return shapes;
         } catch (Exception e) {
             e.printStackTrace();
-            return null;
         }
     }
 
