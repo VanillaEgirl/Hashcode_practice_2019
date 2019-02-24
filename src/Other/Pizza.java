@@ -49,6 +49,10 @@ public class Pizza {
     private boolean writeTakenCells(boolean[][] takenCells, Slice slice) {
         for (int i = 0; i < slice.getHeight(); i++) {
             for (int j = 0; j < slice.getLength(); j++) {
+                if(takenCells[slice.y1 + i][slice.x1 + j]) {
+                    return false;
+                }
+
                 takenCells[slice.y1 + i][slice.x1 + j] = true;
             }
         }
