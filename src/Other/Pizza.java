@@ -12,6 +12,16 @@ public class Pizza {
     public static Ingredient[][] map;
     public List<Slice> slices = new ArrayList<>();
 
+    public int calcScore() {
+        int score = 0;
+
+        for(Slice slice : slices) {
+            score += slice.calcSize();
+        }
+
+        return score;
+    }
+
     public static void print() {
         for (int i = 0; i < Y; i++) {
             for (int j = 0; j < X; j++) {
