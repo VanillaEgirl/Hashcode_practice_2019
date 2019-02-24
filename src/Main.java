@@ -3,8 +3,6 @@ import FileHandling.FileWriter;
 import Other.Pizza;
 import Other.Slice;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 public class Main {
@@ -26,10 +24,10 @@ public class Main {
             randomSlice.x2 = randomSlice.x1 + random.nextInt(Pizza.MAX_SIZE);
             randomSlice.y2 = randomSlice.y1 + random.nextInt(Pizza.MAX_SIZE);
 
-            if(randomSlice.isValid()) {
+            if (randomSlice.isValid()) {
                 temp_pizza.slices.add(randomSlice);
 
-                if(temp_pizza.isValid()) {
+                if (temp_pizza.isValid()) {
                     pizza.slices.add(randomSlice);
                 } else {
                     activ = false;

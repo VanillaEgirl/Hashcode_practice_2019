@@ -5,6 +5,10 @@ public class Slice {
     public int x1;
     public int y2;
 
+    public Slice() {
+
+    }
+
     public Slice(int y1, int x1, int y2, int x2) {
         this.y1 = y1;
         this.x1 = x1;
