@@ -1,12 +1,12 @@
 package Other;
 
 public enum Ingredient {
-    TOMATO("T"),
-    MUSHROOM("M");
+    TOMATO('T'),
+    MUSHROOM('M');
 
-    String signifier;
+    char signifier;
 
-    Ingredient(String signifier) {
+    Ingredient(char signifier) {
         this.signifier = signifier;
     }
 }
