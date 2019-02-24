@@ -15,18 +15,13 @@ public class Main {
         FileReader.readFile();
 
         Pizza pizza = new Pizza();
-        Pizza temp_pizza = new Pizza();
 
         List<Slice> possibleSlices = getPossibleSlices();
 
         int i = 0;
         for (Slice slice : possibleSlices) {
-            temp_pizza.slices.add(slice);
-
-            if (temp_pizza.isValid()) {
-                pizza.slices.add(slice);
-            } else {
-                temp_pizza.slices.remove(slice);
+            if (pizza.canAddSlice(slice)) {
+                pizza.addSlice(slice);
             }
 
             i++;
@@ -47,7 +42,7 @@ public class Main {
             for (int i = 0; i <= Pizza.Y - shape.y; i++) {
                 for (int j = 0; j <= Pizza.X - shape.x; j++) {
                     Slice slice = new Slice(i, j, i + shape.y, j + shape.x);
-                    if (slice.isValid() && !listContainsSlice(possibleSlices, slice)) {
+                    if (slice.isValid()) {
                         possibleSlices.add(slice);
                     }
                 }
@@ -57,15 +52,5 @@ public class Main {
         System.out.println(possibleSlices.size() + " Slices generated");
 
         return possibleSlices;
-    }
-
-    public static boolean listContainsSlice(List<Slice> slices, Slice sliceInQuestion) {
-        for (Slice slice : slices) {
-            if (slice.x1 <= sliceInQuestion.x1 && slice.y1 <= sliceInQuestion.y1 && slice.x2 >= sliceInQuestion.x2 && slice.y2 >= sliceInQuestion.y2) {
-                return true;
-            }
-        }
-
-        return false;
     }
 }

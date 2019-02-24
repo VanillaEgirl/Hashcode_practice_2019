@@ -11,11 +11,27 @@ public class Pizza {
 
     public static Ingredient[][] map;
     public List<Slice> slices = new ArrayList<>();
+    private boolean[][] takenCells;
+
+    public Pizza() {
+        takenCells = new boolean[Y][X];
+
+        for (int i = 0; i < Y; i++) {
+            for (int j = 0; j < X; j++) {
+                takenCells[i][j] = false;
+            }
+        }
+    }
+
+    public void addSlice(Slice slice) {
+        slices.add(slice);
+        writeTakenCells(slice);
+    }
 
     public int calcScore() {
         int score = 0;
 
-        for(Slice slice : slices) {
+        for (Slice slice : slices) {
             score += slice.calcSize();
         }
 
@@ -31,35 +47,22 @@ public class Pizza {
         }
     }
 
-    public boolean isValid() {
-        boolean[][] takenCells = new boolean[Y][X];
-
-        for (int i = 0; i < Y; i++) {
-            for (int j = 0; j < X; j++) {
-                takenCells[i][j] = false;
-            }
-        }
-
-
-        for (Slice slice : slices) {
-            if (!slice.isValid()) {
-                return false;
-            }
-
-            boolean successfull = writeTakenCells(takenCells, slice);
-
-            if(!successfull) {
-                return false;
+    public boolean canAddSlice( Slice slice) {
+        for (int i = 0; i < slice.getHeight(); i++) {
+            for (int j = 0; j < slice.getLength(); j++) {
+                if (takenCells[slice.y1 + i][slice.x1 + j]) {
+                    return false;
+                }
             }
         }
 
         return true;
     }
 
-    private boolean writeTakenCells(boolean[][] takenCells, Slice slice) {
+    private boolean writeTakenCells(Slice slice) {
         for (int i = 0; i < slice.getHeight(); i++) {
             for (int j = 0; j < slice.getLength(); j++) {
-                if(takenCells[slice.y1 + i][slice.x1 + j]) {
+                if (takenCells[slice.y1 + i][slice.x1 + j]) {
                     return false;
                 }
 
