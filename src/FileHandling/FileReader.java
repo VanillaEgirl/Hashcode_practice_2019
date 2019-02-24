@@ -11,19 +11,21 @@ public class FileReader {
 
         List<String> lines = new ArrayList<>();
         try {
-            BufferedReader reader = new BufferedReader(new java.io.FileReader(FilePath.path));
+            BufferedReader reader = new BufferedReader(new java.io.FileReader(FilePath.inputPath));
 
-            String line = reader.readLine();
-            String fractals[] = line.split(" ");
+            String rows = reader.readLine();
+            String fractals[] = rows.split(" ");
             Pizza.ROWS = Integer.parseInt(fractals[0]);
-            int columns = Integer.parseInt(fractals[1]);
-            int min_ingredients = Integer.parseInt(fractals[2]);
-            int max_size = Integer.parseInt(fractals[3]);
+            Pizza.COLS = Integer.parseInt(fractals[1]);
+            Pizza.MIN_INGREDIENTS = Integer.parseInt(fractals[2]);
+            Pizza.MAX_SIZE = Integer.parseInt(fractals[3]);
 
-            while (line != null && !line.isEmpty()) {
-                lines.add(line);
-                line = reader.readLine();
+            for (int i = 0; i < Pizza.ROWS; i++) {
+                rows = reader.readLine();
+                lines.add(rows);
             }
+
+            parseRows(lines);
 
             reader.close();
 
@@ -31,6 +33,17 @@ public class FileReader {
         } catch (Exception e) {
             e.printStackTrace();
             return null;
+        }
+    }
+
+    private static void parseRows(List<String> rows) {
+        Pizza.map = new char[Pizza.ROWS][Pizza.COLS];
+
+        int i=0;
+        for(String row : rows) {
+            char[] chars = row.toCharArray();
+            System.arraycopy(chars, 0, Pizza.map[i], 0, chars.length);
+            i++;
         }
     }
 }
