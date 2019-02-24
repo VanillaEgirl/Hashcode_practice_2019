@@ -15,12 +15,12 @@ public class FileReader {
 
             String rows = reader.readLine();
             String fractals[] = rows.split(" ");
-            Pizza.ROWS = Integer.parseInt(fractals[0]);
-            Pizza.COLS = Integer.parseInt(fractals[1]);
+            Pizza.Y = Integer.parseInt(fractals[0]);
+            Pizza.X = Integer.parseInt(fractals[1]);
             Pizza.MIN_INGREDIENTS = Integer.parseInt(fractals[2]);
             Pizza.MAX_SIZE = Integer.parseInt(fractals[3]);
 
-            for (int i = 0; i < Pizza.ROWS; i++) {
+            for (int i = 0; i < Pizza.Y; i++) {
                 rows = reader.readLine();
                 lines.add(rows);
             }
@@ -37,7 +37,7 @@ public class FileReader {
     }
 
     private static void parseRows(List<String> rows) {
-        Pizza.map = new char[Pizza.ROWS][Pizza.COLS];
+        Pizza.map = new char[Pizza.Y][Pizza.X];
 
         int i=0;
         for(String row : rows) {
