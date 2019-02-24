@@ -22,8 +22,6 @@ public class Main {
 
         int invalidCounter = 0;
         while (active) {
-
-
             int randomSliceIndex = random.nextInt(possibleSlices.size());
 
             Slice randomSlice = possibleSlices.get(randomSliceIndex);
@@ -37,7 +35,7 @@ public class Main {
                 invalidCounter++;
             }
 
-            if(invalidCounter>1) {
+            if(invalidCounter>10) {
                 active = false;
             }
         }

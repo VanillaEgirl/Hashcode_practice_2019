@@ -54,6 +54,8 @@ public class FileReader {
                 shape.x = Integer.parseInt(fractals[1]);
 
                 shapes.add(shape);
+
+                line = reader.readLine();
             }
 
             reader.close();
