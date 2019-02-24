@@ -2,6 +2,7 @@ package FileHandling;
 
 import Other.Ingredient;
 import Other.Pizza;
+import Other.Shape;
 
 import java.io.BufferedReader;
 import java.util.ArrayList;
@@ -31,6 +32,33 @@ public class FileReader {
             reader.close();
 
             return lines;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public static List<Shape> readShapes() {
+
+        List<Shape> shapes = new ArrayList<>();
+        try {
+            BufferedReader reader = new BufferedReader(new java.io.FileReader(FilePath.possibilitiesPath));
+
+            String line = reader.readLine();
+
+            while (line != null && !line.isEmpty()) {
+                Shape shape = new Shape();
+
+                String fractals[] = line.split(" ");
+                shape.y = Integer.parseInt(fractals[0]);
+                shape.x = Integer.parseInt(fractals[1]);
+
+                shapes.add(shape);
+            }
+
+            reader.close();
+
+            return shapes;
         } catch (Exception e) {
             e.printStackTrace();
             return null;
