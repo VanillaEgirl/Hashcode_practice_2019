@@ -21,8 +21,8 @@ public class Main {
 
             randomSlice.x1 = random.nextInt(Pizza.X);
             randomSlice.y1 = random.nextInt(Pizza.Y);
-            randomSlice.x2 = randomSlice.x1 + random.nextInt(Pizza.MAX_SIZE);
-            randomSlice.y2 = randomSlice.y1 + random.nextInt(Pizza.MAX_SIZE);
+            randomSlice.x2 = randomSlice.x1 + random.nextInt(Pizza.X - randomSlice.x1);
+            randomSlice.y2 = randomSlice.y1 + random.nextInt(Pizza.X - randomSlice.y1);
 
             if (randomSlice.isValid()) {
                 temp_pizza.slices.add(randomSlice);
@@ -32,8 +32,6 @@ public class Main {
                 } else {
                     activ = false;
                 }
-            } else {
-                activ = false;
             }
         }
 
