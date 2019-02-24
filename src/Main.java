@@ -16,43 +16,50 @@ public class Main {
 
         Pizza pizza = new Pizza();
         Pizza temp_pizza = new Pizza();
-        boolean activ = true;
+        boolean active = true;
 
-        while (activ) {
+        List<Slice> possibleSlices = getPossibleSlices();
 
-            Slice randomSlice = new Slice();
+        int invalidCounter = 0;
+        while (active) {
 
-            randomSlice.x1 = random.nextInt(Pizza.X);
-            randomSlice.y1 = random.nextInt(Pizza.Y);
-            randomSlice.x2 = randomSlice.x1 + random.nextInt(Pizza.X - randomSlice.x1);
-            randomSlice.y2 = randomSlice.y1 + random.nextInt(Pizza.Y - randomSlice.y1);
 
-            if (randomSlice.isValid()) {
-                temp_pizza.slices.add(randomSlice);
+            int randomSliceIndex = random.nextInt(possibleSlices.size());
 
-                if (temp_pizza.isValid()) {
-                    pizza.slices.add(randomSlice);
-                } else {
-                    activ = false;
-                }
+            Slice randomSlice = possibleSlices.get(randomSliceIndex);
+
+            temp_pizza.slices.add(randomSlice);
+
+            if (temp_pizza.isValid()) {
+                pizza.slices.add(randomSlice);
+                invalidCounter = 0;
+            } else {
+                invalidCounter++;
+            }
+
+            if(invalidCounter>1) {
+                active = false;
             }
         }
 
         FileWriter.writeFile(pizza.slices);
     }
 
-    public List<Slice> getPossibleSlices() {
+    public static List<Slice> getPossibleSlices() {
         List<Slice> possibleSlices = new ArrayList<>();
 
-//        List<Shape> shapes = FileReader.getShapes();
-//
-//        for (Shape shape : shapes) {
-//            for (int i = 0; i < Pizza.Y/shape.y; i++) {
-//                for (int j = 0; j < Pizza.X; j++) {
-//
-//                }
-//            }
-//        }
+        List<Shape> shapes = FileReader.readShapes();
+
+        for (Shape shape : shapes) {
+            for (int i = 0; i < Pizza.Y / shape.y; i++) {
+                for (int j = 0; j < Pizza.X / shape.x; j++) {
+                    Slice slice = new Slice(shape.y * i, shape.x * j, shape.y * (i + 1), shape.x * (j + 1));
+                    if (slice.isValid()) {
+                        possibleSlices.add(slice);
+                    }
+                }
+            }
+        }
 
         return possibleSlices;
     }
