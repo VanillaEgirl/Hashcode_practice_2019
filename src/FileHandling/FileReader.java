@@ -1,16 +1,17 @@
 package FileHandling;
 
+import Other.Pizza;
+
 import java.io.BufferedReader;
-import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FileHandler {
+public class FileReader {
     public static List<String> readFile() {
 
         List<String> lines = new ArrayList<>();
         try {
-            BufferedReader reader = new BufferedReader(new FileReader(FilePath.path));
+            BufferedReader reader = new BufferedReader(new java.io.FileReader(FilePath.path));
 
             String line = reader.readLine();
             String fractals[] = line.split(" ");

@@ -1,10 +1,12 @@
-import FileHandling.FileHandler;
+package Other;
+
+import FileHandling.FileReader;
 
 import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        List<String> file = FileHandler.readFile();
+        List<String> file = FileReader.readFile();
 
         printStringList(file);
     }
