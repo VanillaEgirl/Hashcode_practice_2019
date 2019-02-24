@@ -52,5 +52,7 @@ public class Pizza {
                 takenCells[slice.y1 + i][slice.x1 + j] = true;
             }
         }
+
+        return true;
     }
 }
