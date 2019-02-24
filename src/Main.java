@@ -21,7 +21,7 @@ public class Main {
 
         List<Slice> possibleSlices = getAllPossibleSlices();
 
-        Pizza bestPizza = new Pizza();
+        Pizza pizza = new Pizza();
 
         List<Chunk> chunks = new ArrayList<>();
 
@@ -32,32 +32,18 @@ public class Main {
             }
         }
 
-        for (int t = 0; t < 10; t++) {
-            Pizza pizza = new Pizza();
+        for (Chunk chunk : chunks) {
+            //TODO
+        }
 
-            for (int i = 0; i < 100; i++) {
-                int randomIndex = random.nextInt(possibleSlices.size());
-                Slice slice = possibleSlices.get(randomIndex);
-
-                if (pizza.canAddSlice(slice)) {
-                    pizza.addSlice(slice);
-                }
-            }
-
-            for (Slice slice : possibleSlices) {
-                if (pizza.canAddSlice(slice)) {
-                    pizza.addSlice(slice);
-                }
-            }
-
-            System.out.println(pizza.calcScore());
-            if (pizza.calcScore() > bestPizza.calcScore()) {
-                bestPizza.slices.clear();
-                bestPizza.slices.addAll(pizza.slices);
+        for (Slice slice : possibleSlices) {
+            if (pizza.canAddSlice(slice)) {
+                pizza.addSlice(slice);
             }
         }
 
-        FileWriter.writeFile(bestPizza.slices);
+        FileWriter.writeFile(pizza.slices);
+        System.out.println(pizza.calcScore());
     }
 
     public static List<Slice> getAllPossibleSlices() {
