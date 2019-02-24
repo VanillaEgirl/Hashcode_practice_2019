@@ -16,27 +16,22 @@ public class Main {
 
         Pizza pizza = new Pizza();
         Pizza temp_pizza = new Pizza();
-        boolean active = true;
 
         List<Slice> possibleSlices = getPossibleSlices();
 
-        int invalidCounter = 0;
-        while (active) {
-            int randomSliceIndex = random.nextInt(possibleSlices.size());
-
-            Slice randomSlice = possibleSlices.get(randomSliceIndex);
-
-            temp_pizza.slices.add(randomSlice);
+        int i = 0;
+        for (Slice slice : possibleSlices) {
+            temp_pizza.slices.add(slice);
 
             if (temp_pizza.isValid()) {
-                pizza.slices.add(randomSlice);
-                invalidCounter = 0;
+                pizza.slices.add(slice);
             } else {
-                invalidCounter++;
+                temp_pizza.slices.remove(slice);
             }
 
-            if (invalidCounter > 10) {
-                active = false;
+            i++;
+            if (i % 10000 == 0) {
+                System.out.println(i);
             }
         }
 
@@ -49,16 +44,28 @@ public class Main {
         List<Shape> shapes = FileReader.readShapes();
 
         for (Shape shape : shapes) {
-            for (int i = 0; i < Pizza.Y - shape.y; i++) {
-                for (int j = 0; j < Pizza.X - shape.x; j++) {
+            for (int i = 0; i <= Pizza.Y - shape.y; i++) {
+                for (int j = 0; j <= Pizza.X - shape.x; j++) {
                     Slice slice = new Slice(i, j, i + shape.y, j + shape.x);
-                    if (slice.isValid()) {
+                    if (slice.isValid() && !listContainsSlice(possibleSlices, slice)) {
                         possibleSlices.add(slice);
                     }
                 }
             }
         }
 
+        System.out.println(possibleSlices.size() + " Slices generated");
+
         return possibleSlices;
+    }
+
+    public static boolean listContainsSlice(List<Slice> slices, Slice sliceInQuestion) {
+        for (Slice slice : slices) {
+            if (slice.x1 <= sliceInQuestion.x1 && slice.y1 <= sliceInQuestion.y1 && slice.x2 >= sliceInQuestion.x2 && slice.y2 >= sliceInQuestion.y2) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
