@@ -1,5 +1,8 @@
 package Other;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Pizza {
     public static int Y;
     public static int X;
@@ -7,6 +10,7 @@ public class Pizza {
     public static int MAX_SIZE;
 
     public static Ingredient[][] map;
+    public List<Slice> slices = new ArrayList<>();
 
     public static void print() {
         for (int i = 0; i < Y; i++) {
