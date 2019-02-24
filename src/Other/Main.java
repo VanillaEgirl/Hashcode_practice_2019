@@ -1,3 +1,5 @@
+package Other;
+
 import FileHandling.FileReader;
 import FileHandling.FileWriter;
 import Other.Chunk;
@@ -12,8 +14,8 @@ import java.util.Random;
 public class Main {
     private static Random random = new Random();
 
-    private static int CHUNK_X = 20;
-    private static int CHUNK_Y = 20;
+    public static int CHUNK_X = 20;
+    public static int CHUNK_Y = 20;
 
     public static void main(String[] args) {
         FileReader.readFile();
@@ -33,14 +35,19 @@ public class Main {
         }
 
         for (Chunk chunk : chunks) {
-            //TODO
-        }
-
-        for (Slice slice : possibleSlices) {
-            if (pizza.canAddSlice(slice)) {
-                pizza.addSlice(slice);
+            chunk.calcPerfectOption();
+            for (Slice slice : chunk.slices) {
+                if (pizza.canAddSlice(slice)) {
+                    pizza.addSlice(slice);
+                }
             }
         }
+
+//        for (Slice slice : possibleSlices) {
+//            if (pizza.canAddSlice(slice)) {
+//                pizza.addSlice(slice);
+//            }
+//        }
 
         FileWriter.writeFile(pizza.slices);
         System.out.println(pizza.calcScore());
