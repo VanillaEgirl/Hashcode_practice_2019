@@ -1,3 +1,5 @@
+package Other;
+
 public class Pizza {
     public static int ROWS;
     public static int COLS;

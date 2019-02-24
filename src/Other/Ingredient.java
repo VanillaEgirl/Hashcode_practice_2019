@@ -1,3 +1,5 @@
+package Other;
+
 public enum Ingredient {
     TOMATO("T"),
     MUSHROOM("M");
