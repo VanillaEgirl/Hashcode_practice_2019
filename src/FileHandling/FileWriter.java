@@ -14,8 +14,11 @@ public class FileWriter {
         try {
             PrintWriter writer = new PrintWriter(filePath, ENCODING);
 
+            System.out.println(slices.size());
+            writer.println(slices.size());
+            
             for (Slice slice : slices) {
-                String string = slice.y1 + " " + slice.x1 + " " + slice.y2 + " " + slice.x2;
+                String string = slice.y1 + " " + slice.x1 + " " + (slice.y2 - 1) + " " + (slice.x2 - 1);
                 System.out.println(string);
                 writer.println(string);
             }
