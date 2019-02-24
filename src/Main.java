@@ -35,7 +35,7 @@ public class Main {
                 invalidCounter++;
             }
 
-            if(invalidCounter>10) {
+            if (invalidCounter > 10) {
                 active = false;
             }
         }
@@ -49,9 +49,9 @@ public class Main {
         List<Shape> shapes = FileReader.readShapes();
 
         for (Shape shape : shapes) {
-            for (int i = 0; i < Pizza.Y / shape.y; i++) {
-                for (int j = 0; j < Pizza.X / shape.x; j++) {
-                    Slice slice = new Slice(shape.y * i, shape.x * j, shape.y * (i + 1), shape.x * (j + 1));
+            for (int i = 0; i < Pizza.Y - shape.y; i++) {
+                for (int j = 0; j < Pizza.X - shape.x; j++) {
+                    Slice slice = new Slice(i, j, i + shape.y, j + shape.x);
                     if (slice.isValid()) {
                         possibleSlices.add(slice);
                     }
