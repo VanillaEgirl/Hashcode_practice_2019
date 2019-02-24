@@ -3,6 +3,8 @@ import FileHandling.FileWriter;
 import Other.Pizza;
 import Other.Slice;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class Main {
@@ -36,5 +38,17 @@ public class Main {
         }
 
         FileWriter.writeFile(pizza.slices);
+    }
+
+    public List<Slice> getPossibleSlices() {
+        List<Slice> possibleSlices = new ArrayList<>();
+
+        for (int i = 0; i < Pizza.Y; i++) {
+            for (int j = 0; j < Pizza.X; j++) {
+
+            }
+        }
+
+        return possibleSlices;
     }
 }
